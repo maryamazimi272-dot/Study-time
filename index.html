@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Study Time 📚</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Study Time 📚</h1>
+    <p>Студенттер мен оқушылардың жеке оқу жоспары</p>
+  </header>
+
+  <nav>
+    <button data-tab="tasks" class="active">✅ Тапсырмалар</button>
+    <button data-tab="schedule">🗓 Кесте</button>
+    <button data-tab="pomodoro">🍅 Pomodoro</button>
+    <button data-tab="exams">🎯 Емтихан</button>
+  </nav>
+
+  <main>
+    <!-- Тапсырмалар және дедлайндар -->
+    <section id="tasks" class="tab active">
+      <h2>Тапсырмалар мен дедлайндар</h2>
+      <div class="row">
+        <input id="taskTitle" placeholder="Тапсырма атауы">
+        <input id="taskDate" type="date">
+        <button id="addTask">Қосу</button>
+      </div>
+      <div class="bar"><div id="taskBar"></div></div>
+      <p id="taskStat" class="muted"></p>
+      <ul id="taskList"></ul>
+    </section>
+
+    <!-- Сабақ кестесі -->
+    <section id="schedule" class="tab">
+      <h2>Сабақ кестесі</h2>
+      <div class="row">
+        <select id="schDay">
+          <option>Дүйсенбі</option><option>Сейсенбі</option><option>Сәрсенбі</option>
+          <option>Бейсенбі</option><option>Жұма</option><option>Сенбі</option>
+        </select>
+        <input id="schTime" type="time">
+        <input id="schSubject" placeholder="Пән">
+        <button id="addLesson">Қосу</button>
+      </div>
+      <div id="scheduleGrid"></div>
+    </section>
+
+    <!-- Pomodoro -->
+    <section id="pomodoro" class="tab">
+      <h2>Pomodoro таймері</h2>
+      <div class="row center">
+        <button class="mode active" data-min="25">Жұмыс 25</button>
+        <button class="mode" data-min="5">Үзіліс 5</button>
+        <button class="mode" data-min="15">Ұзақ 15</button>
+      </div>
+      <div id="timer">25:00</div>
+      <div class="row center">
+        <button id="startBtn">▶ Бастау</button>
+        <button id="resetBtn" class="ghost">⟲ Қайта</button>
+      </div>
+      <p class="muted center">Бүгін аяқталған сессия: <b id="sessions">0</b></p>
+    </section>
+
+    <!-- Емтихан прогресі -->
+    <section id="exams" class="tab">
+      <h2>Емтиханға дайындық</h2>
+      <div class="row">
+        <input id="exSubject" placeholder="Пән">
+        <input id="exDate" type="date">
+        <input id="exTopics" type="number" min="1" placeholder="Тақырып саны">
+        <button id="addExam">Қосу</button>
+      </div>
+      <div id="examList"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
