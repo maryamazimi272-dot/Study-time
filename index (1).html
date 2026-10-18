@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study Time</title>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=PT+Serif:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div class="desk">
+  <header class="top">
+    <div class="logo">Study Time</div>
+    <button id="theme" class="ghost">Қараңғы</button>
+  </header>
+  <nav>
+    <button data-t="home" class="on">Басты</button>
+    <button data-t="tasks">Тапсырмалар</button>
+    <button data-t="sched">Кесте</button>
+    <button data-t="focus">Фокус</button>
+    <button data-t="courses">Курстар</button>
+    <button data-t="exams">Емтихан</button>
+  </nav>
+
+  <main class="sheet">
+    <section id="home" class="tab on">
+      <p class="date" id="today"></p>
+      <h1 id="hello">Сәлем!</h1>
+      <p class="sum">Бүгін <b id="sFocus">0</b> минут оқыдың. Барлығы <b id="sDone">0</b> тапсырма орындадың, қатарынан <b id="sStreak">0</b> күн кірдің.</p>
+      <div class="lvlrow"><span id="lvl"></span><div class="bar"><div id="xpbar"></div></div></div>
+      <div class="cols">
+        <div>
+          <h2>Бүгінге жоспар</h2>
+          <ul id="plan"></ul>
+        </div>
+        <div>
+          <h2>Осы аптадағы фокус, минут</h2>
+          <div id="chart"></div>
+          <h2>Жетістіктер</h2>
+          <div id="badges"></div>
+        </div>
+      </div>
+      <div class="row foot">
+        <button id="exp" class="ghost">Деректерді жүктеу</button>
+        <label class="btn ghost">Деректерді қайтару<input type="file" id="imp" accept=".json" hidden></label>
+      </div>
+    </section>
+
+    <section id="tasks" class="tab">
+      <h1>Тапсырмалар</h1>
+      <p class="muted">Дедлайны бар істерді осында жаз, орындалғанын белгіле.</p>
+      <div class="row">
+        <input id="tTitle" placeholder="Не істеу керек?">
+        <input id="tDate" type="date">
+        <select id="tPrio"><option value="h">Жоғары</option><option value="m" selected>Орта</option><option value="l">Төмен</option></select>
+        <button id="addTask">Қосу</button>
+      </div>
+      <select id="filter"><option value="all">Барлығы</option><option value="active">Орындалмаған</option><option value="done">Орындалған</option></select>
+      <ul id="taskList"></ul>
+    </section>
+
+    <section id="sched" class="tab">
+      <h1>Сабақ кестесі</h1>
+      <p class="muted">Күнді, уақытты және пәнді таңдап кестеге қос.</p>
+      <div class="row">
+        <select id="sDay"><option>Дүйсенбі</option><option>Сейсенбі</option><option>Сәрсенбі</option><option>Бейсенбі</option><option>Жұма</option><option>Сенбі</option></select>
+        <input id="sTime" type="time">
+        <input id="sSub" placeholder="Пән">
+        <button id="addLes">Қосу</button>
+      </div>
+      <div id="grid"></div>
+    </section>
+
+    <section id="focus" class="tab">
+      <h1>Фокус</h1>
+      <p class="muted">Бір сессия аяқталса, 20 XP аласың.</p>
+      <div class="row center">
+        <button class="mode on" data-m="w">Жұмыс</button>
+        <button class="mode" data-m="b">Үзіліс</button>
+      </div>
+      <div class="ringbox">
+        <svg viewBox="0 0 200 200"><circle class="rbg" cx="100" cy="100" r="90"/><circle id="ring" cx="100" cy="100" r="90" transform="rotate(-90 100 100)"/></svg>
+        <div id="timer">25:00</div>
+      </div>
+      <div class="row center">
+        <button id="start">▶ Бастау</button>
+        <button id="reset" class="ghost">⟲ Қайта</button>
+      </div>
+      <div class="row center">
+        <label>Жұмыс, мин <input id="wMin" type="number" min="1" value="25"></label>
+        <label>Үзіліс, мин <input id="bMin" type="number" min="1" value="5"></label>
+      </div>
+    </section>
+
+    <section id="courses" class="tab">
+      <h1>Тіл курстары</h1>
+      <p class="muted">Тілді таңда, сөздерді карточкамен үйрен, сосын тест тапсыр.</p>
+      <div id="courseView"></div>
+    </section>
+
+    <section id="exams" class="tab">
+      <h1>Емтиханға дайындық</h1>
+      <p class="muted">Тақырып санын жаз, әр үйренген тақырыпты белгіле.</p>
+      <div class="row">
+        <input id="eSub" placeholder="Пән">
+        <input id="eDate" type="date">
+        <input id="eTop" type="number" min="1" placeholder="Тақырып саны">
+        <button id="addExam">Қосу</button>
+      </div>
+      <div id="examList"></div>
+    </section>
+  </main>
+</div>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
